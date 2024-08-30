@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
+import { Table } from 'react-bootstrap';
+import './Table.css'
 
-const Table = ({ netIncomes }) => {
+const Tabla = ({ netIncomes }) => {
+
+    const totalIncome = netIncomes.reduce((total, company) => total + company.income, 0);
+    const averageIncome = totalIncome/netIncomes.length;
+
     return (
-        <table>
+        <>
+        <Table striped bordered hover variant="dark" className="tamanio">
             <thead>
                 <tr>
                     <th>Brand</th>
@@ -16,14 +23,23 @@ const Table = ({ netIncomes }) => {
                         <td>{income}</td>
                     </tr>
                 ))}
+                <tr>
+                    <td colSpan={2}>Ingreso neto: {averageIncome.toFixed(2)}</td>
+                </tr>
             </tbody>
-        </table>
+        </Table>
+        
+        </>
     );
 };
 
-export default Table;
+export default Tabla;
 
-Table.prototype = {
-    brand: PropTypes.string,
-    income: PropTypes.number,
-}
+Tabla.propTypes = {
+    netIncomes: PropTypes.arrayOf(
+        PropTypes.shape({
+            brand: PropTypes.string.isRequired,
+            income: PropTypes.number.isRequired
+        })
+    ).isRequired
+};
