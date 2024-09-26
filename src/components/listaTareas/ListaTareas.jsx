@@ -10,37 +10,40 @@ const ListaTareas = ({ tareas, alternarCompletada, eliminarTarea }) => {
 
     return (
         <ListGroup as="ol" numbered>
+
             {tareas.map((tarea) => (
                 <ListGroup.Item
                     as="li"
                     key={tarea.id}
-                    className="d-flex justify-content-between align-items-start mb-2"
-                >
-                    <div className="ms-2 me-auto">
-                        <div
-                            className="fw-bold"
+                    className="d-flex justify-content-between align-items-center mb-2">
+
+                    <div className="w-100">
+                        <Button
+                            variant={tarea.completada ? 'outline-success' : 'outline-secondary'}
+                            className="fw-bold text-start"
                             style={{
                                 textDecoration: tarea.completada ? 'line-through' : 'none',
                                 color: tarea.completada ? 'lightgray' : 'black',
                             }}
-                            onClick={() => alternarCompletada(tarea.id)}
-                        >
+                            onClick={() => alternarCompletada(tarea.id)}>
                             {tarea.texto}
-                        </div>
+                        </Button>
                     </div>
+
                     <Badge bg={tarea.completada ? 'success' : 'warning'} pill className="me-2">
                         {tarea.completada ? 'Completada' : 'Pendiente'}
                     </Badge>
+
                     <Button variant="danger" size="sm" onClick={() => eliminarTarea(tarea.id)}>
                         Eliminar
                     </Button>
+
                 </ListGroup.Item>
             ))}
         </ListGroup>
     );
 };
 
-// Definición de los propTypes para el componente ListaTareas
 ListaTareas.propTypes = {
     tareas: PropTypes.arrayOf(
         PropTypes.shape({

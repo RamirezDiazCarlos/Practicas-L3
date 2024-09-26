@@ -11,10 +11,10 @@ const AgregarTarea = ({ agregarTarea }) => {
     };
 
     const manejarSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault();// se me actualizaba la página al agregar una tarea
         if (nuevaTarea.trim() !== '') {
             agregarTarea(nuevaTarea);
-            setNuevaTarea(''); // Limpia el campo después de agregar
+            setNuevaTarea('');
         }
     };
 
@@ -22,6 +22,7 @@ const AgregarTarea = ({ agregarTarea }) => {
         <Form onSubmit={manejarSubmit}>
             <Form.Group>
                 <Form.Label>Agregar nueva tarea</Form.Label>
+
                 <Form.Control
                     type="text"
                     placeholder="Escribe una tarea"
@@ -29,6 +30,7 @@ const AgregarTarea = ({ agregarTarea }) => {
                     onChange={manejarCambio}
                 />
             </Form.Group>
+
             <Button variant="primary" type="submit" className="mt-3">
                 Agregar Tarea
             </Button>
@@ -36,9 +38,9 @@ const AgregarTarea = ({ agregarTarea }) => {
     );
 };
 
-// Definición de propTypes para AgregarTarea
+
 AgregarTarea.propTypes = {
-    agregarTarea: PropTypes.func.isRequired, // agregarTarea es una función y es obligatoria
+    agregarTarea: PropTypes.func.isRequired,
 };
 
 export default AgregarTarea;

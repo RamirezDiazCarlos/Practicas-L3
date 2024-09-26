@@ -30,16 +30,17 @@ function App() {
 
 
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center" style={{ height: '100vh'}}>
+    <div className="container d-flex flex-column justify-content-center align-items-center" style={{ height: '100vh' }}>
       <div className="w-50">
+
         <h1 className="text-center mb-4">Tareas</h1>
+
         <AgregarTarea agregarTarea={agregarTarea} />
-        <div className="mt-3">  {/* Añadir margen superior aquí */}
+        <div className="mt-3">
           <ListaTareas
             tareas={tareas}
             alternarCompletada={alternarCompletada}
-            eliminarTarea={eliminarTarea}
-          />
+            eliminarTarea={eliminarTarea} />
         </div>
       </div>
     </div>
